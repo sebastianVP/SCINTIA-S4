@@ -1,0 +1,64 @@
+# =============================================================================
+# Configuración ÚNICA del experimento principal (periodo común 2025–2026).
+# Toda la tesis (baselines, ablación, Transformer, modelo final) usa este archivo.
+# =============================================================================
+nombre: ablacion_2025_2026
+
+rutas:
+  base: /home/soporte/Documents/scintia-s4 #/home/soporte/Documents/CENTELLEO_INOSFERICO_DAML_PERU   # <-- ajustar
+  s4_reconstruido: data/processed/df_max_s4_reconstruido.csv      # salida de 01_reconstruccion
+  multivariable: data/raw/DF_FINAL_JICAMARCA_31072026.csv         # TEC, ROTI, índices
+  indices_omni: null        # opcional: CSV horario OMNI crudo (recomendado, ver features.py)
+  experimentos: experiments
+  reportes: reports
+
+periodo:
+  inicio: "2025-01-26"
+  fin: "2026-07-21"
+
+datos:
+  target: S4
+  umbral_evento: 0.6
+  sampling_min: 1
+  flags_reconstruccion: [Fix0, Fix1, Fix3, Fix4, Fix_Pico]   # minutos excluidos de las métricas
+
+split:
+  ratios: [0.70, 0.15, 0.15]
+  min_eventos: [1, 1, 1]
+  min_dias_activos_test: 1
+  hora_corte_ut: 12      # corte a las 07 LT: ninguna noche de centelleo queda partida
+  # Si se fijan, se usan tal cual (reproducibilidad). Si son null, se buscan.
+  fin_train: "2025-12-09"
+  fin_validacion: "2026-03-01"
+
+ventanas:
+  lookback: 360
+  horizon: 20
+
+escalador: minmax
+
+entrenamiento:
+  batch_size: 256
+  epochs: 30
+  epochs_grid: 10
+  learning_rate: 0.001
+  patience_es: 4
+  patience_lr: 3
+  semillas: [42, 123, 7]
+
+perdida:
+  tipo: wfl            # wfl | mse
+  alpha: 1.5
+  beta: 100.0
+  penal_subestimacion: 2.0
+  ratio_subestimacion: 0.8
+
+modelo:
+  tipo: apilado        # simple | apilado | bidireccional | patchtst
+  units1: 64
+  units2: 64
+  dropout: 0.3
+
+evaluacion:
+  n_boot: 1000
+  umbrales_alerta: [0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70]   # se calibra en VALIDACIÓN

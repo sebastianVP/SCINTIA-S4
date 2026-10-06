@@ -1,0 +1,21 @@
+{
+  "LOOKBACK": 360,
+  "HORIZON": 20,
+  "THRESHOLD": 0.6,
+  "FEATURES_COLS": [
+    "daily_sin",
+    "daily_cos",
+    "day_of_year_sin",
+    "day_of_year_cos",
+    "S4"
+  ],
+  "TARGET_COL": "S4",
+  "SAMPLING_MINUTES": 1,
+  "ARQUITECTURA": "apilado",
+  "UNITS1": 64,
+  "UNITS2": 64,
+  "DROPOUT": 0.3,
+  "BETA": 100.0,
+  "ALPHA": 1.5,
+  "RMSE_EVENTO_TEST": 0.22165067895096233
+}

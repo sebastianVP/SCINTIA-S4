@@ -1,0 +1,4 @@
+particion,inicio,fin,observaciones,dias,dias_activos,pct_dias_activos,eventos,minutos_evento
+TRAIN,2025-01-27 00:01:00,2025-12-10 11:59:00,423147,309,64,20.71,361,667
+VALIDACIÓN,2025-12-10 12:00:00,2026-03-02 11:59:00,95812,73,16,21.92,116,246
+TEST,2026-03-02 12:00:00,2026-07-21 22:45:00,165055,125,13,10.4,253,483

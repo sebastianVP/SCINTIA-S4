@@ -1,0 +1,11 @@
+# Entorno local RTX 4080 (Linux). TensorFlow con CUDA incluido:
+tensorflow[and-cuda]>=2.16
+numpy
+pandas
+scikit-learn
+statsmodels
+matplotlib
+joblib
+pyyaml
+pytest
+streamlit
